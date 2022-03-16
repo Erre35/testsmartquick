@@ -9,7 +9,9 @@ class Bills(models.Model):
     company_name = models.CharField(max_length=150)
     nit = models.CharField(max_length=150)
     code = models.CharField(max_length=150)
-
+    product = models.ForeignKey(
+                    Products, null=True, 
+                    on_delete=models.CASCADE)
     def __str__(self):
         return self.code
 

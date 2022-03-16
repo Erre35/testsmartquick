@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-)_m(85k4gaf-vltk1a=g^*5^2(8_b3o5hf680qw#6yocv!0ub0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.2.18']
 
 
 # Application definition
@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'bills',
     'products',
     'api',
+    'aparcaderos',
+    'buses',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -100,10 +102,20 @@ WSGI_APPLICATION = 'testsmartquick.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'geo_django',
+        'USER': 'root',
+        'PASSWORD': 'Rn1026294807',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -145,6 +157,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

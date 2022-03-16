@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <link rel="stylesheet" href="{% static 'skin.css'%}">
+</head>
+{% csrf_token %}
+
+<style>
+
+    body{
+    
+    
+    background-size: 100%;
+    
+    }
+    
+    
+    .space{
+    
+    margin-top: 2%;
+    
+    }
+    
+   
+    
+    label{
+    
+    color: white; 
+    font-size: 20px;
+    
+    }
+    
+    input{
+    
+    text-align: center;
+    
+    
+    }
+    
+    h1, h2, h3 {
+    
+    text-align: center;
+    margin-bottom: 3%;
+    color: white;
+    
+    
+    }
+    
+    
+    </style>
+
+<body>
+    <div class="d-flex justify-content-center">
+        <div class="rounded map mb-4" id="mapa">
+    </div>
+
+    </div>
+
+    <!-- Scripts de js -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="{% static 'mapaFunciones.js'%}"></script>
+
+    <form action="index.html" method="post" name="formu" id="formu" onsubmit=" return comprobar()">
+
+
+
+        <!---  Inicio espacio    --->
+    
+        <!---  Fianl espacio    --->
+    
+    
+    
+           <!---  Inicio contenedor   --->
+          <div class="contenedor">
+    
+    
+                   <!---  Inicio row formulario   --->
+                   <div class="d-flex justify-content-center mt-4">
+                      <div class="col-3 mt-4">
+                        <div class="col">
+                            <div class="col-10 d-flex justify-content-end">
+                                <img class="text-center rounded mx-2" style="transform: rotate(35deg);width: 35px;height: 35px;" src="/static/placeholder.png">
+                            </div>
+                            <h4 class="title text-center font-weight-bold">Registrar Bus</h4>
+                        </div>
+                         
+                           <div class="form-group mt-4">
+                             <p class="text-left title font-weight-bold">Placa:</p>
+                             <input type="text" name="placa" id="Placa" class="form-control text-uppercase"   required="">
+                           </div>
+    
+                           <div class="form-group">
+                             <p class="text-left title font-weight-bold">Hora De Salida:</p>
+                             <input id="party1" type="datetime-local" name="Hora1"  class="form-control text-uppercase" />
+                           </div>
+    
+                           <div class="form-group">
+                             <p class="text-left title font-weight-bold">Hora De Llegada:</p>
+                             <input id="party2" type="datetime-local" name="Hora2"  class="form-control text-uppercase" />
+                           </div>
+    
+    
+                             <div class="form-group">
+                                <p class="text-left title font-weight-bold">Origen:</p>
+                                <select name="Origen" id="Origen" class="form-control text-uppercase" >
+                                    <option value="1">Chocontá </option>
+                                    <option value="2">Tibiritá</option>
+                                    <option value="3">Jerusalén</option>
+                                    <option value="4">Ricaurte</option>
+                                    <option value="5">Puerto Salgar</option>
+                                    <option value="6">La Vega</option>
+                                    <option value="7">Útica</option>
+                                    <option value="8">Villeta</option>
+                                    <option value="9">Guasca</option>
+                                    <option value="10">Choachí</option>
+                                    <option value="11">Pacho</option>
+                                    <option value="12">Yacopí</option>
+                                    <option value="13">Cogua</option>
+                                    <option value="14">Cota</option>
+                                    <option value="15">Sopó</option>
+                                    <option value="16">Tocancipá</option>
+                                    <option value="17">Facatativá</option>
+                                    <option value="18">El Colegio</option>
+                                    <option value="19">Simijaca</option>
+                                    <option value="20">Ubaté</option>
+                                    <option value="21">Bogotá D.C.</option>
+                                  </select>
+                           </div>
+    
+                           <div class="form-group">
+                            <p class="text-left title font-weight-bold">Destino:</p>
+                            <select name="Destino" id="Destino" class="form-control text-uppercase" >
+                              <option value="1">Chocontá </option>
+                              <option value="2">Tibiritá</option>
+                              <option value="3">Jerusalén</option>
+                              <option value="4">Ricaurte</option>
+                              <option value="5">Puerto Salgar</option>
+                              <option value="6">La Vega</option>
+                              <option value="7">Útica</option>
+                              <option value="8">Villeta</option>
+                              <option value="9">Guasca</option>
+                              <option value="10">Choachí</option>
+                              <option value="11">Pacho</option>
+                              <option value="12">Yacopí</option>
+                              <option value="13">Cogua</option>
+                              <option value="14">Cota</option>
+                              <option value="15">Sopó</option>
+                              <option value="16">Tocancipá</option>
+                              <option value="17">Facatativá</option>
+                              <option value="18">El Colegio</option>
+                              <option value="19">Simijaca</option>
+                              <option value="20">Ubaté</option>
+                              <option value="21">Bogotá D.C.</option>
+
+                              </select>
+                       </div>
+
+    
+    
+                            <center> <input  type="button" onclick="getData()"  value="Guardar" class="btn btn-secondary text-uppercase mb-4"></center>
+    
+                      </div>
+                   </div>
+                   <!--- Final row formulario   --->
+    
+    
+          </div>
+          <!--- Final contenedor   --->
+    
+    </form>
+</body>
+
+</html>

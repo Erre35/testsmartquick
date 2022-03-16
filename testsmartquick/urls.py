@@ -8,4 +8,5 @@ urlpatterns = [
     path('auth/', include('rest_auth.urls')),
     path('auth/registration/', include('rest_auth.registration.urls')),
     path('API/', include(('api.urls', "API"), namespace="API")),
+    path('aparcaderos/', include(('aparcaderos.urls', "aparcaderos"), namespace="aparcaderos")),
 ]
